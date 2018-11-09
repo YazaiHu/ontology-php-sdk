@@ -18,8 +18,6 @@ $wallet = new Wallet();
 $account->setAddress(md5(random_bytes(32)));
 $identity->ontid = md5(random_bytes(32));
 //
-$wallet->addAccount($account);
-$wallet->addIdentity($identity);
 
 //var_dump($account->toString());
 //var_dump($scrypt->toString());
@@ -27,12 +25,17 @@ $wallet->addIdentity($identity);
 
 //$wallet->setDefaultIdentity(-1);
 
-
-
-
 $walletMgr = new WalletMgr("wallet.json", new \Ontio\Crypto\SignatureSchema());
+//
+//$wallet = $walletMgr->getWallet();
+//$wallet->addIdentity($identity);
+//
 
-$wallet = $walletMgr->getWallet();
+
+
+$wallet =  $walletMgr->getWallet();
+
+$wallet->addAccount($account);
 $wallet->addIdentity($identity);
 
 $walletMgr->writeWallet();
